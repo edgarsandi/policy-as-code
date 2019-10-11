@@ -25,7 +25,6 @@ kubectl label ns kube-system openpolicyagent.org/webhook=ignore --overwrite=true
 kubectl label ns opa openpolicyagent.org/webhook=ignore --overwrite=true
 
 # register OPA as an admission controller
-
 cat > resources/webhook-configuration.yaml <<EOF
 kind: ValidatingWebhookConfiguration
 apiVersion: admissionregistration.k8s.io/v1beta1
@@ -53,4 +52,6 @@ EOF
 
 kubectl apply -f resources/webhook-configuration.yaml
 
+# create OPA policy
+kubectl create configmap pod-auditing --from-file=policy/pods.rego
 
