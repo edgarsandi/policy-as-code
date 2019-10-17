@@ -23,5 +23,7 @@ test: show
 
 clean:
 	@rm -f $(PLAN) $(SHOW)
+	@rm -f terraform.tfstate
+	@rm -f terraform.tfstate.backup
 
 .PHONY: plan show test all clean
